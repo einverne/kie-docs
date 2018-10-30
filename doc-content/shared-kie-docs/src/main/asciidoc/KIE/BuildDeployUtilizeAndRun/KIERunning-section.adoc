@@ -45,6 +45,8 @@ KieSession ksession = kbase.newKieSession();
 The `KieRuntime` provides methods that are applicable to both rules and processes, such as setting globals and registering channels.
 ("Exit point" is an obsolete synonym for "channel".)
 
+`KieRuntime` 提供规则和流程可使用的方法，比如设置全局变量或者注册channels。
+
 .KieRuntime
 image::KIE/BuildDeployUtilizeAndRun/KieRuntime.png[align="center"]
 
@@ -56,7 +58,13 @@ Globals are named objects that are made visible to the {DECISION_ENGINE}, but in
 Still, globals are useful for providing static information, as an object offering services that are used in the RHS of a rule, or as a means to return objects from the {DECISION_ENGINE}.
 When you use a global on the LHS of a rule, make sure it is immutable, or, at least, don't expect changes to have any effect on the behavior of your rules.
 
+Globals 是有名字的对象，能够被 {DECISION_ENGINE} 可见，但是有一个很基础的不同就是，对象中的修改被提交到 global 中时不会触发规则的重新求值。
+并且，globals 可以有效地提供静态信息，比如在 RHS 规则中会使用的服务，或者作为从 {DECISION_ENGINE} 中返回对象的方法。
+当在 LHS 规则中使用 global 时，确保它是不可修改的，或者至少，不要期望改变会影响规则的行为。
+
 A global must be declared in a rules file, and then it needs to be backed up with a Java object.
+
+global 必须定义在规则文件中，然后需要在 Java Object 中设置。
 
 [source]
 ----
@@ -66,6 +74,9 @@ global java.util.List list
 
 With the KIE base now aware of the global identifier and its type, it is now possible to call `ksession.setGlobal()` with the global's name and an object, for any session, to associate the object with the global.
 Failure to declare the global type and identifier in DRL code will result in an exception being thrown from this call.
+
+当 KIE base 感知到 global 表示和其类型，他会调用 `ksession.setGlobal()` 来关键 global。
+在 DRL 代码中定义 global 类型失败时会导致抛出异常。
 
 [source,java]
 ----
@@ -92,12 +103,16 @@ image::KIE/BuildDeployUtilizeAndRun/KieRuntimeEventManager.png[align="center"]
 
 The `RuleRuntimeEventManager` allows for listeners to be added and removed, so that events for the working memory and the agenda can be listened to.
 
+`RuleRuntimeEventManager` 允许添加或者移除 listeners，这样 working memory 和 agenda 的事件就能够被监听。
+
 .RuleRuntimeEventManager
 image::KIE/BuildDeployUtilizeAndRun/RuleRuntimeEventManager.png[align="center"]
 
 
 The following code snippet shows how a simple agenda listener is declared and attached to a session.
 It will print matches after they have fired.
+
+下面的代码片段显示了一段简单的附加到 Session 上的 agenda 监听器，它将会在规则 fired 时输出匹配的规则。
 
 .Adding an AgendaEventListener
 ====
@@ -115,6 +130,9 @@ ksession.addEventListener( new DefaultAgendaEventListener() {
 
 Drools also provides `DebugRuleRuntimeEventListener` and `DebugAgendaEventListener` which implement each method with a debug print statement.
 To print all Working Memory events, you add a listener like this:
+
+Drools 也提供了 `DebugRuleRuntimeEventListener` 和 `DebugAgendaEventListener`，这两个 listener 提供了打印 debug 日志的方法。
+可以通过如下方法来添加 listener。
 
 .Adding a DebugRuleRuntimeEventListener
 ====
@@ -176,6 +194,8 @@ Stateful sessions have already been covered, which use the standard KieRuntime, 
 Stateless is a one-off execution of a KieRuntime with a provided data set.
 It may return some results, with the session being disposed at the end, prohibiting further iterative interactions.
 You can think of stateless as treating an engine like a function call with optional return results.
+
+Stateless 是一次性可执行的 KieRuntime. 它可以获取一些结果，然后在结束时销毁，禁止更多的交互。
 
 The foundation for this is the `CommandExecutor` interface, which both the stateful and stateless interfaces extend.
 This returns an ``ExecutionResults``:

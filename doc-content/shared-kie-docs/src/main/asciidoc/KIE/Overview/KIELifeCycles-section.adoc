@@ -5,9 +5,11 @@
 
 The different aspects, or life cycles, of working with KIE system, whether it's Drools or jBPM, can typically be broken down into the following:
 
+不管是 Drools 还是 jBPM，和 KIE 系统一同工作，都可以被分为如下几个步骤：
+
 * *Author*
 +
-** Authoring of knowledge using a UI metaphor, such as: DRL, BPMN2, decision table, class models.
+** Authoring of knowledge using a UI metaphor(比喻), such as: DRL, BPMN2, decision table, class models.
 * *Build*
 +
 ** Builds the authored knowledge into deployable units. 
@@ -24,6 +26,32 @@ The different aspects, or life cycles, of working with KIE system, whether it's 
 ** The loading of a JAR to provide a KIE session (KieSession), for which the application can interact with.
 ** KIE exposes the JAR at runtime via a KIE container (KieContainer).
 ** KieSessions, for the runtime's to interact with, are created from the KieContainer.
+* *Run*
++
+** System interaction with the KieSession, via API.
+* *Work*
++
+** User interaction with the KieSession, via command line or UI.
+* *Manage*
++
+** Manage any KieSession or KieContainer.
+
+
+* *Author*
++
+** 使用 UI 编辑规则知识 , such as: DRL, BPMN2, decision table, class models.
+* *Build*
++
+** 编译上面定义好的规则，使之可以被部署使用. 对于 KIE 来说就是 JAR。
+* *Test*
++
+** 在规则被应用程序使用前，测试 KIE knowledge
+* *Deploy*
++
+** 将规则部署到一个地方，使得其他应用程序可以使用他们. KIE 使用 Maven 风格的仓库。
+* *Utilize*
++
+** 加载 JAR 到 KIE session (KieSession), 使得应用可以与之交互。 KIE 通过 KIE container 来在运行时导出 JAR。 用来在运行时使用的 KieSessions ，是由 KieContainer 创建而来。
 * *Run*
 +
 ** System interaction with the KieSession, via API.

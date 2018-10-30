@@ -1,16 +1,26 @@
 [[_wb.userandgroupmgmt]]
 = Security management
 
+安全管理
+
 This section describes how administrator users can manage the application's users, groups and permissions using an intuitive and friendly user interface in order to
 configure who can access the different resources and features available.
 
+这一节描述了管理员通过直观友好的界面如何管理应用的用户，组织，权限，控制谁可以访问不同的资源和功能
+
 == Basic concepts
+
+基本概念
 
 === Introduction to {CENTRAL} users, groups and roles
 
 The {CENTRAL} security domain defines three kind of entities: __user__, __group__ and __role__.
 
+{CENTRAL} 安全方面定义了三个种类: __user__, __group__ and __role__.
+
 The security entities are being registered in the domain by consuming some __realm__. The realm can be either the application server's one (Wildfly, EAP, Tomcat) or any other of the supported types, for example, using some Keycloak remote server that performs handles the target realm.
+
+The security entities are being registered in the domain by consuming some __realm__. realm 可以是应用程序自己的，比如(Wildfly, EAP, Tomcat) 或者外部支持的, 比如, 使用 Keycloak 服务器处理目标 realm .
 
 On the other hand, it's important to notice that each realm provides, or potentially provides, its own capabilities, semantics or structure on the security domain. These kind of differences on the security domain results on inconsistencies between different environments when moving into the {CENTRAL} security domain. This way there exist some conventions which are important to understand - how security entities are being declared and how the platform behaves behind that complexity,
 
@@ -46,6 +56,8 @@ It does not mean, for instance, that the user is able login, or able to consume 
 
 A permission is basically something the user can do within the application. Usually, an action related to a specific resource. For instance:
 
+权限通常是用户可以在应用中操作的事情。通常是一个和具体资源相关的动作，比如：
+
 * View a page
 * Save a project
 * View a repository
@@ -53,12 +65,14 @@ A permission is basically something the user can do within the application. Usua
 
 A permission can be granted or denied and it can be global or resource specific. For instance:
 
+权限可以被授予或者拒绝，可以是全局的或者是具体资源的，比如：
+
 * Global: “Create new pages”
 * Specific: “View the home page”
 
 As you can see, a permission is a `resource + action` pair. In the concrete case of a page we have: _read_, _update_, _delete_ and _create_ as the available actions. That means that there are four possible permissions that could be granted for pages.
 
-Permissions do not necessarily need to be tied to a resource. Sometimes it is also neccessary to protect access to specific features, like for instance "_generate a sales report_". That means, permissions can be used not only to protect access to resources but also to custom features within the application.
+Permissions do not necessarily need to be tied to a resource. Sometimes it is also necessary to protect access to specific features, like for instance "_generate a sales report_". That means, permissions can be used not only to protect access to resources but also to custom features within the application.
 
 === Authorization policy
 
@@ -112,7 +126,7 @@ At the time of this writing, the application provides two pre-installed security
 
 Please read each https://github.com/kiegroup/appformer/tree/master/uberfire-extensions/uberfire-security/uberfire-security-management[provider's documentation] in order to apply the concrete settings for the target deployment environment.
 
-On the other hand, when either using a custom security provider or using one of the availables, consider the following installation options:
+On the other hand, when either using a custom security provider or using one of the available, consider the following installation options:
 
 * Enable the security management feature on an existing WAR distribution
 * Setup and installation in an existing or new project
@@ -122,7 +136,11 @@ Once a security provider is installed and setup, the user and group management f
 
 === Enabling user & group management
 
+开启用户组织管理
+
 Given an existing WAR distribution, follow these steps in order to install and enable the user & group management features:
+
+通过下面步骤开启：
 
 * Ensure the following libraries are present on __WEB-INF/lib__:
 +
@@ -152,6 +170,8 @@ Removing or commenting all the lines in the configuration file located at__ WEB-
 === Upgrading an existing installation
 
 In versions prior to 7, the only way to grant access to resources like Organizational Units, Repositories or Projects was to indicate which roles were able to access a given instance. Those roles were stored in GIT as part of the instance persistent status. The CLI was the tool used to add/remove roles:
+
+在现有的基础上升级到 7 版本，唯一授予组织，Repositories 或者项目权限资源的方法就是确定哪一些角色可以访问给定的实例。这些角色作为实例持久化状态存储在 GIT 中。 CLI 工具可以用来增加或者删除角色：
 
 * **remove-role-repo**: remove role(s) from repository
 * **add-role-org-unit**: add role(s) to organizational unit

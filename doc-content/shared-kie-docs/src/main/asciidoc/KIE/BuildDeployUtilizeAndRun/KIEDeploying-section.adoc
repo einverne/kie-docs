@@ -9,12 +9,16 @@ It will contain rules, processes, functions, and type models.
 The `KieBase` itself does not contain data; instead, sessions are created from the `KieBase` into which data can be inserted and from which process instances may be started.
 The `KieBase` can be obtained from the `KieContainer` containing the `KieModule` where the `KieBase` has been defined.
 
+`KieBase` 是一个包含了所有应用知识定义的知识库。它包含了规则，过程，方法，和类型。`KieBase` 自身并不包含数据；相反，sessions 从 `KieBase` 中创建，可以插入数据并且从流程实例中启动。
+
 .KieBase
 image::KIE/BuildDeployUtilizeAndRun/KieBase.png[align="center"]
 
 
 Sometimes, for instance in a OSGi environment, the `KieBase` needs to resolve types that are not in the default class loader.
 In this case it will be necessary to create a `KieBaseConfiguration` with an additional class loader and pass it to `KieContainer` when creating a new `KieBase` from it.
+
+有时，例如在OSGi环境中，`KieBase`需要解析不在默认类加载器中的类型。在这种情况下，有必要创建一个带有附加类加载器的`KieBaseConfiguration`，并在从它创建一个新的`KieBase`时将其传递给`KieContainer`。
 
 .Creating a new KieBase with a custom ClassLoader
 ====
@@ -32,6 +36,8 @@ KieBase kbase = kieContainer.newKieBase( kbaseConf );
 KieSessions will be discussed in more detail in section "Running". The `KieBase` creates and returns `KieSession` objects, and it may optionally keep references to those.
 When `KieBase` modifications occur those modifications are applied against the data in the sessions.
 This reference is a weak reference and it is also optional, which is controlled by a boolean flag.
+
+KieSessions将在 “Running” 部分中详细讨论。 `KieBase` 创建并返回 `KieSession` 对象，它可以选择保留对它们的引用。当发生`KieBase`修改时，这些修改将应用于会话中的数据。 此引用是弱引用，它也是可选的，由布尔标志控制。
 
 == KieScanner
 

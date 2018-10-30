@@ -1,7 +1,8 @@
 [id='guided-decision-tables-columns-types-con']
-= Types of columns in guided decision tables
+= Types of columns in guided decision tables 向导型决策表中列的类型
 
 The *Add a new column* wizard for guided decision tables provides the following column options. (Select *Include advanced options* to view all options.)
+*Add a new column* 向导提供了如下的列选项。
 
 * <<guided-decision-tables-columns-condition-con, Add a Condition>>
 * <<guided-decision-tables-columns-condition-BRL-con, Add a Condition BRL fragment>>

@@ -3,4 +3,8 @@
 
 Spreadsheet decision tables are XLS or XLSX spreadsheets that contain business rules defined in a tabular format. You can include spreadsheet decision tables with standalone {PRODUCT} projects or upload them to projects in {CENTRAL}. Each row in a decision table is a rule, and each column is a condition, an action, or another rule attribute. After you create and upload your spreadsheet decision tables, the rules you defined are compiled into Drools Rule Language (DRL) rules as with all other rule assets.
 
+电子表格决策表是 XLS 或者 XLSX 表格，使用表格样式定义了商业规则。可以单独在 {PRODUCT} 中使用电子表格决策表，或者将它们上传到 {CENTRAL} 项目中。决策表的每一行都是一条规则，每一列是一个条件，动作，后者规则属性。当创建并上传完电子表格，你定义的这些规则会被编译成 Drools Rule Language(DRL) 规则。
+
 All data objects related to a spreadsheet decision table must be in the same project package as the spreadsheet decision table. Assets in the same package are imported by default. Existing assets in other packages can be imported with the decision table.
+
+所有和电子表格关联的对象都必须在同一个项目 package 下，在同一个 package 下的资源默认会被引用。已经存在其他包中的资源可以被手动引入。

@@ -4,6 +4,7 @@
 [[_wb.warinstallation]]
 == War installation
 
+War 包安装
 
 Use the `war` from the {CENTRAL} distribution zip that corresponds to your application server.
 The differences between these `war` files are mainly superficial.

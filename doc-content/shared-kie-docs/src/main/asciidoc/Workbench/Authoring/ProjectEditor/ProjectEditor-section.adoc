@@ -17,6 +17,8 @@ image::Workbench/Authoring/ProjectEditor/project_editor_menu.png[align="center"]
 
 Build & Depoy builds the current project and deploys the KJAR into the {CENTRAL} internal Maven repository.
 
+编译 和 部署，编译当前项目并部署 JAR 到 {CENTRAL} 内部 Maven 仓库。
+
 == Project Settings
 
 
@@ -25,7 +27,8 @@ Project Settings edits the pom.xml file used by Maven.
 === Project General Settings
 
 
-General settings provide tools for project name and GAV-data (Group, Artifact, Version). GAV values are used as identifiers to differentiate projects and versions of the same project.
+General settings provide tools for project name and GAV-data (Group, Artifact, Version).
+GAV values are used as identifiers to differentiate projects and versions of the same project.
 
 .Project Settings
 image::Workbench/Authoring/ProjectEditor/general_settings.png[align="center"]
@@ -39,6 +42,9 @@ Dependency is a project that has been built and deployed to a Maven repository.
 Internal dependencies are projects built and deployed in the same {CENTRAL} as the project.
 External dependencies are retrieved from repositories outside of the current {CENTRAL}.
 Each dependency uses the GAV-values to specify the project name and version that is used by the project.
+
+项目可能拥有许多内部或者外部的依赖。依赖是一些被编译并且部署到 Maven 仓库的项目，内部依赖是同一个 {CENTRAL} 中编译部署的项目，
+外部依赖是从外部仓库中获取的。每一个被项目使用的依赖都使用 GAV 来确定唯一的项目名字和版本。
 
 .Dependencies
 image::Workbench/Authoring/ProjectEditor/dependencies.png[align="center"]

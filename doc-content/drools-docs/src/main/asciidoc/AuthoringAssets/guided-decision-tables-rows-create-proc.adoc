@@ -1,12 +1,15 @@
 [id='guided-decision-tables-rows-create-proc']
 = Adding rows and defining rules in guided decision tables
 
+增加行 在向导型决策表中定义规则
+
 After you have created your columns in the guided decision table, you can add rows and define rules within the guided decision tables designer.
+在创建了列之后，你可以增加行并且定义规则。
 
-.Prerequisites
-* Columns for the guided decision table have been added as described in xref:guided-decision-tables-columns-create-proc[].
+.Prerequisite 先决条件
+Columns for the guided decision table have been added as described in xref:guided-decision-tables-columns-create-proc[].
 
-.Procedure
+.Procedure 流程
 . In the guided decision tables designer, click *Insert* -> *Append row* or one of the *Insert row* options. (You can also click *Insert column* to open the column wizard and define a new column.)
 +
 .Add Rows

@@ -1,4 +1,8 @@
 [id='business-central-settings-security-proc']
 = Security management
 
+安全管理
+
 You can perform security and permission management tasks from the *Security management* page. To access the *Security management* page, select the *Admin* icon in the top-right corner of the screen and click *Roles*, *Groups*, or *Users* on the {CENTRAL} *Settings* page. Depending on which icon you click, the *Security management* page opens for the respective tab. Use roles and groups to manage privileges and settings for users. Any changes apply to all users with the affected role or group.
+
+可以在安全管理页面管理安全和权限相关的设置。访问安全设置，点击设置中的 *Roles*, *Groups*, or *Users* 。 依据你点击的图标，设置页面会打开相应的页面。使用 role 或者 groups 来管理 users 的权限和设置。

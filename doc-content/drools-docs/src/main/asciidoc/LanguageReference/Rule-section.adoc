@@ -161,6 +161,8 @@ The dialect species the language to be used for any code expressions in the LHS 
 Currently two dialects are available, Java and MVEL.
 While the dialect can be specified at the package level, this attribute allows the package definition to be overridden for a rule.
 
+dialect 属性制定了 LHS 和 RHS 代码块中使用的语言。目前有两种 dialect 可用, Java 和 MVEL。dialect 可以在包级别指定，这个属性运行在规则级别定义并且覆盖包级别的定义。
+
 `date-effective`::
 default value: N/A
 +

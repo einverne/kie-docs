@@ -4,6 +4,8 @@
 
 You can embed an executable rule model in your Maven project to compile your rule assets more efficiently at build time.
 
+您可以在 Maven 项目中嵌入可执行规则模型，以便在 build 时更快速地编译规则资源。
+
 .Prerequisites
 * You have a Mavenized project that contains {PRODUCT} business assets.
 

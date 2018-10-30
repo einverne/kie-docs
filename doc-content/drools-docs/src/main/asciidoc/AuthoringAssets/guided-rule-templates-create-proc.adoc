@@ -3,9 +3,11 @@
 
 You can use guided rule templates to define rule structures with placeholder values (template keys) that correspond to actual values defined in a data table. Guided rule templates are an efficient alternative to defining sets of many guided rules individually that use the same structure.
 
-.Procedure
+你可以使用 guided rule templates 使用占位符来定义规则结构。Guided rule templates 是定义一组相同结构的规则的可选方案，用定义的模板可以快速生成相似的规则。
+
+.Procedure 流程
 . In {CENTRAL}, go to *Menu* -> *Design* -> *Projects* and click the project name.
-. Click *Add Asset* -> *Guided Rule Template*.
+. Click *Add Asset* -> *Guided Rule Template(规则模板)*.
 . Enter an informative *Guided Rule Template* name and select the appropriate *Package*. The package that you specify must be the same package where the required data objects have been assigned or will be assigned.
 . Click *Ok* to create the rule template.
 +
@@ -27,7 +29,7 @@ image::Workbench/AuthoringAssets/guided-rule-template.png[Sample guided rule tem
 .Note on template keys
 [NOTE]
 ====
-Template keys are fundamental in guided rule templates. Template keys are what enable field values in the templates to be interchanged with actual values that you define in the corresponding data table to generate different rules from the same template. You can use other value types, such as *Literal* or *Formula*, for values that are part of the rule structure of all rules based on that template. However, for any values that differ among the rules, use the *Template key* field type with a specified key. Without template keys in a guided rule template, the corresponding data table is not generated in the template designer and the template essentially functions as an individual guided rule.
+Template keys are fundamental(核心) in guided rule templates. Template keys are what enable field values in the templates to be interchanged with actual values that you define in the corresponding data table to generate different rules from the same template. You can use other value types, such as *Literal* or *Formula*, for values that are part of the rule structure of all rules based on that template. However, for any values that differ among the rules, use the *Template key* field type with a specified key. Without template keys in a guided rule template, the corresponding data table is not generated in the template designer and the template essentially functions as an individual guided rule.
 ====
 +
 The *WHEN* part of the rule template is the condition that must be met to execute an action. For example, if a telecommunications company charges customers based on the services they subscribe to (Internet, phone, and TV), then one of the *WHEN* conditions would be `internetService | equal to | $hasInternetService`. The template key `$hasInternetService` is interchanged with an actual Boolean value (`true` or `false`) defined in the data table for the template.

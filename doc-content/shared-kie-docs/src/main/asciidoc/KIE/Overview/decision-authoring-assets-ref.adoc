@@ -11,6 +11,8 @@
 
 {PRODUCT} supports several assets that you can use to define business decisions for your decision service. Each decision-authoring asset has different advantages, and you might prefer to use one or a combination of multiple assets depending on your goals and needs.
 
+{PRODUCT} 支持很多不同的 assets，你可以用来定义不同的商业决策。 每一个决策过程 asset 有不同的优点，你可以根据自己的目标或者需求来选择一个或者组合多个。
+
 The following table highlights the main decision-authoring assets supported in {PRODUCT} projects to help you decide or confirm the best method for defining decisions in your decision service.
 
 .Decision-authoring assets supported in {PRODUCT}
@@ -42,8 +44,8 @@ endif::[]
 
 |Guided decision tables
 a|
-* Are tables of rules that you create in a UI-based table designer in {CENTRAL}
-* Are a wizard-led alternative to spreadsheet decision tables
+* Are tables of rules that you create in a UI-based table designer in {CENTRAL}， 可以在 {CENTRAL} 中通过界面设计来创建的规则表
+* Are a wizard-led alternative to spreadsheet decision tables，相较于 spreadsheet decision tables, 多增加向导程序
 * Provide fields and options for acceptable input
 * Support template keys and values for creating rule templates
 * Support hit policies, real-time validation, and other additional features not supported in other assets

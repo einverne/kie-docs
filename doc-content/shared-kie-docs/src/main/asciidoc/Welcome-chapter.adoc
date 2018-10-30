@@ -6,8 +6,12 @@
 KIE (Knowledge Is Everything) is an umbrella project introduced to bring our related technologies together under one roof.
 It also acts as the core shared between our projects.
 
+KIE (知识就是一切) 是一个伞形结构的项目，将相关技术整合到了一个屋檐下。它同样在我们的项目中扮演着核心角色。
+
 KIE contains the following different but related projects offering a complete portfolio of solutions for business
 automation and management:
+
+KIE包含以下不同但相关的项目，为业务自动化和管理提供完整的解决方案组合:
 
 1. *Drools* is a business-rule management system with a forward-chaining and backward-chaining inference-based rules engine,
 allowing fast and reliable evaluation of business rules and complex event processing. A rules engine is also a fundamental
@@ -20,7 +24,14 @@ and cloud optimization.
 4. *{CENTRAL}* is is a full featured web application for the visual composition of custom business rules and processes.
 5. *UberFire* is a web-based workbench framework inspired by Eclipse Rich Client Platform.
 
-The 7.x series will follow a more agile approach with more regular and iterative releases. We plan to do some bigger changes than normal for a series of minor releases, and users need to be aware those are coming before adopting.
+1. *Drools* 是一个商业规则管理系统，拥有 forward-chaining 和 backward-chaining 的规则引擎，能够快速可靠地执行商业规则和复杂的事件流程。
+规则引擎也同样是构建专家系统的基础设施，在人工智能领域，也就是计算机系统帮助人类专家进行决策的能力。
+2. *jBPM* 是一个灵活的商业过程管理套件，允许用户对商业目标建模，通过对目标分步骤的决策过程描述来是实现。
+3. *OptaPlanner* 是一个 constraint solver （约束解决器？） 优化了一些用例，比如员工班次，车辆道路，任务分配，cloud optimization
+4. *{CENTRAL}* 是一个全功能的网页应用，可以进行可视化组合自定义的商业规则和过程
+5. *UberFire* 是一个基于Web的工作台框架，该框架受到 Eclipse Rich Client Platform 的启发。
+
+The 7.x series will follow a more agile(灵活的） approach with more regular and iterative releases. We plan to do some bigger changes than normal for a series of minor releases, and users need to be aware those are coming before adopting.
 
 1. UI sections and links will become object oriented, rather than task oriented. https://en.wikipedia.org/wiki/Object-oriented_user_interface
 2. Authoring/Library will become project oriented, rather than repository oriented. You'll create, browse and open projects rather than repositories. The repository concept will be pushed lower, for instance it'll be created automaticaly when you create the projcet.

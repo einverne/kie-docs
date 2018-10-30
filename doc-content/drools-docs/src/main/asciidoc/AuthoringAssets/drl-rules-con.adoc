@@ -3,4 +3,8 @@
 
 DRL (Drools Rule Language) rules are business rules that you define directly in `.drl` text files. These DRL files are the source in which all other rule assets in {CENTRAL} are ultimately rendered. You can create and manage DRL files within the {CENTRAL} interface, or create them externally using Red Hat Developer Studio, Java objects, or Maven archetypes. A DRL file can contain one or more rules that define at a minimum the rule conditions (`when`) and actions (`then`). The DRL designer in {CENTRAL} provides syntax highlighting for Java, DRL, and XML.
 
+DRL (Drools Rule Language) 规则是直接定义在 `.drl` 文本文件中的商业规则。这些 DRL 文件是最终的源文件，所有其他在 {CENTRAL} 中的规则资源最终都会变成该文件。你可以在 {CENTRAL} 中创建和管理 DRL 文件，或者直接使用 Ret Hat Developer Studio 直接创建。 DRL 文件可以包含一个或者多条规则，定义在 `when` 和 `then`. {CENTRAL} 中的 DRL 设计器提供了 Java，DRL 和 XML 的语法高亮。
+
 All data objects related to a DRL rule must be in the same project package as the DRL rule in {CENTRAL}. Assets in the same package are imported by default. Existing assets in other packages can be imported with the DRL rule.
+
+

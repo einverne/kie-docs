@@ -25,16 +25,24 @@ In order for a fact to be evaluated against the rules in a ``KieBase``, it has t
 This is done by calling the method ``insert(yourObject)``.
 When a fact is inserted into the session, some of its properties might be immediately evaluated (eager evaluation) and some might be deferred for later evaluation (lazy evaluation). The exact behaviour depends on the {DECISION_ENGINE} algorithm being used.
 
+为了使得  ``KieBase`` 中的 Fact 可以被计算，必须被插入到 Session 中，通过 ``insert(yourObject)`` 调用来插入。
+当 Fact 被插入到 session 中，一些属性可能被立即计算（eager evaluation)，一些可能延期计算（lazy evaluation）。具体的行为由 {DECISION_ENGINE} 的算法决定。
+
 [NOTE]
 ====
 Expert systems typically use the term _assert_ or _assertion_ to refer to facts made available to the system.
 However, due to "assert" being a keyword in most languages, we have decided to use the `insert` keyword; In this manual, the two terms are used interchangeably.
+
+专家系统通常使用术语 _assert_ 或者 _assertion_ 来指代系统可用的 facts。但是因为 "assert" 是大部分语言的保留字，所以我们决定使用 `insert` 关键字；在这个手册中，这两个术语可以相互替换使用。
 ====
 
 
 When an Object is inserted it returns a ``FactHandle``.
 This `FactHandle` is the token used to represent your inserted object within the ``WorkingMemory``.
 It is also used for interactions with the `WorkingMemory` when you wish to delete or modify an object.
+
+当一个对象被插入，返回 ``FactHandle``. `FactHandle` 是在``WorkingMemory`` 中用来代表 inserted object 的 token。
+当需要删除或者修改 Object 时也可以用来和 ``WorkingMemory`` 交互。
 
 [source,java]
 ----
@@ -49,6 +57,9 @@ Identity is the default.
 _Identity_ means that the Working Memory uses an `IdentityHashMap` to store all asserted objects.
 New instance assertions always result in the return of new ``FactHandle``, but if an instance is asserted again then it returns the original fact handle, i.e., it ignores repeated insertions for the same object.
 
+_Identity_ 意味着 Working Memory 使用 一个 `IdentityHashMap` 来保存所有 asserted objects.
+New instance assertions always result in the return of new ``FactHandle``, but if an instance is asserted again then it returns the original fact handle, i.e., it ignores repeated insertions for the same object.
+
 _Equality_ means that the Working Memory uses a `HashMap` to store all asserted objects.
 An object instance assertion will only return a new `FactHandle` if the inserted object is not equal (according to its `equal()/hashcode()` methods) to an already existing fact.
 
@@ -59,6 +70,10 @@ In order to remove a fact from the session, the method `delete()` is used.
 When a fact is deleted,  any matches that are active and depend on that fact will be cancelled.
 Note that it is possible to have rules that depend on the nonexistence of a fact, in which case deleting a fact may cause a rule to activate.
 (See the `not` and `exists` keywords).
+
+为了在 Session 中移除 fact，可以使用 `delete()` 方法。
+当 fact 被删除，所有激活的匹配和依赖该 fact 地方都会被取消。
+注意，定义依赖于一个不存在的 fact 的规则是可能的，所以删除 fact 的方法可能导致规则激活。(查看 not 或者 exists 关键字)
 
 [NOTE]
 ====
