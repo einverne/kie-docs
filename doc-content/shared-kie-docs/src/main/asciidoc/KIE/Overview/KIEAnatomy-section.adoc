@@ -1,10 +1,10 @@
 [[_kieanatomysection]]
-= Anatomy of Projects
+= Anatomy(结构) of Projects
 
 
 The process of researching an integration knowledge solution for Drools and jBPM has simply used the "kiegroup" group name.
 This name permeates GitHub accounts and Maven POMs.
-As scopes broadened and new projects were spun KIE, an acronym for Knowledge Is Everything, was chosen as the new group name.
+As scopes broadened and new projects were spun KIE, an acronym(首字母词) for Knowledge Is Everything, was chosen as the new group name.
 The KIE name is also used for the shared aspects of the system; such as the unified build, deploy and utilization.
 
 KIE currently consists of the following subprojects:
@@ -13,7 +13,8 @@ KIE currently consists of the following subprojects:
 image::KIE/Overview/kie.png[align="center"]
 
 
-OptaPlanner, a local search and optimization tool, has been spun off from Drools Planner and is now a top level project with Drools and jBPM.
+OptaPlanner, a local search and optimization tool(本地搜索和优化工具), has been spun off(有用的副产品) from Drools Planner and is now a top level project with Drools and jBPM.
+
 This was a natural evolution as Optaplanner, while having strong Drools integration, has long been independent of Drools.
 
 From the Polymita acquisition, along with other things, comes the powerful Dashboard Builder which provides powerful reporting capabilities.
@@ -22,6 +23,7 @@ Dashboard Builder is completely independent of Drools and jBPM and will be used 
 
 UberFire is the new base {CENTRAL} project, spun off from the ground up rewrite.
 UberFire provides Eclipse-like workbench capabilities, with panels and pages from plugins.
+
 The project is independent of Drools and jBPM and anyone can use it as a basis of building flexible and powerful workbenches like {CENTRAL}.
 UberFire will be used for console and workbench development throughout JBoss.
 
@@ -29,6 +31,7 @@ It was determined that the Guvnor brand leaked too much from its intended role; 
 This wasn't helped by the monolithic projects structure used in 5.x for Guvnor.
 In 6.0 Guvnor's focus has been narrowed to encapsulate the set of UberFire plugins that provide the basis for building a web based IDE.
 Such as Maven integration for building and deploying, management of Maven repositories and activity notifications via inboxes.
+
 Drools and jBPM build {CENTRAL} distributions using Uberfire as the base and including a set of plugins, such as Guvnor, along with their own plugins for things like decision tables, guided editors, BPMN2 designer, human tasks.
 {CENTRAL} is called {URL_COMPONENT_CENTRAL}.
 

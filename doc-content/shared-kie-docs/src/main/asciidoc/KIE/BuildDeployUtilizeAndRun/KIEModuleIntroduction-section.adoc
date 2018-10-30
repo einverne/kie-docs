@@ -10,7 +10,7 @@ A KIE project or module is simply a Maven Java project or module; with an additi
 The kmodule.xml file is the descriptor that selects resources to KIE bases and configures those KIE bases and sessions.
 There is also alternative XML support via Spring and OSGi BluePrints.
 
-While standard Maven can build and package KIE resources, it will not provide validation at build time.
+While standard Maven can build and package KIE resources, it will not provide validation at build time.Hybrid Reasoning
 There is a Maven plugin which is recommended to use to get build time validation.
 The plugin also generates many classes, making the runtime loading faster too.
 
@@ -24,9 +24,13 @@ KIE uses defaults to minimise the amount of configuration.
 With an empty kmodule.xml being the simplest configuration.
 There must always be a kmodule.xml file, even if empty, as it's used for discovery of the JAR and its contents.
 
+KIE 使用默认设定来减少配置的数量。使用一个空的 kmodule.xml 是最简单的配置。项目中必须要有一个 kmodule.xml 文件，即使是空的，该文件用来发现 JAR 和其他内容。
+
 Maven can either 'mvn install' to deploy a KieModule to the local machine, where all other applications on the local machine use it.
 Or it can 'mvn deploy' to push the KieModule to a remote Maven repository.
 Building the Application will pull in the KieModule and populate the local Maven repository in the process.
+
+Maven 可以 'mvn install' 来将 KieModule 安装到本地，这样当前机器所有其他应用都能够使用。
 
 .Example project layout and Maven POM
 image::KIE/BuildDeployUtilizeAndRun/maven.png[align="center"]
@@ -39,5 +43,8 @@ Each found JAR is represented by the KieModule interface.
 The terms classpath KieModule and dynamic KieModule are used to refer to the two loading approaches.
 While dynamic modules supports side by side versioning, classpath modules do not.
 Further once a module is on the classpath, no other version may be loaded dynamically.
+
+JARs 有两种方式被部署使用。一种是添加到 classpath 中，像其他 JAR 被定于到 Maven 依赖中，或者在运行时动态加载。
+KIE 会通过 KieModule 接口来扫描 classpath.
 
 Detailed references for the API are included in the next sections, the impatient can jump straight to the examples section, which is fairly self-explanatory on the different use cases.

@@ -21,14 +21,24 @@ A big focus for 6.0 was streamlining the build, deploy and loading (utilization)
 Building and deploying activities are now aligned with Maven and Maven repositories.
 The utilization for loading rules and processess is now convention and configuration oriented, instead of programmatic, with sane defaults to minimise the configuration.
 
+在 5.x 系列版本中被诟病最大的问题是缺乏 deployment 的方法。Drools 和 jBPM 的机制是非常灵活的，但问题也是太过于灵活。
+在 6.0 版本中重点关注的就是流程化 编译, 部署 和 加载系统的各个方面。
+编译和部署的行为已经和 Maven 和 Maven 仓库一致对齐。
+规则和过程的加载的使用已经约定俗成，并且面向配置，而不是编程，并且提供了健全的默认配置以最小化使用成本。
+
 Projects can be built with Maven and installed to the local M2_REPO or remote Maven repositories.
 Maven is then used to declare and build the classpath of dependencies, for KIE to access.
+
+项目可以使用 Maven 来构建，并且安装到本地 M2_REPO 或者远程 Maven 仓库中。
+Maven 接下来被用作给定义和编译依赖，给 KIE 使用。
 
 == Configuration and convention based projects
 
 
 The 'kmodule.xml' provides declarative configuration for KIE projects.
 Conventions and defaults are used to reduce the amount of configuration needed. 
+
+'kmodule.xml' 文件提供了 KIE 项目配置。协定和默认被用来减少配置的数量
 
 .Declare KieBases and KieSessions
 ====
@@ -42,7 +52,7 @@ Conventions and defaults are used to reduce the amount of configuration needed.
 ----
 ====
 
-.Utilize the KieSession
+.Utilize the KieSession 利用 KieSession
 ====
 [source,java]
 ----
@@ -61,6 +71,10 @@ kSession.fireAllRules();
 It is possible to include all the KIE artifacts belonging to a KieBase into a second KieBase.
 This means that the second KieBase, in addition to all the rules, function and processes directly defined into it,  will also contain the ones created in the included KieBase.
 This inclusion can be done declaratively in the kmodule.xml file
+
+将所有属于一个 KieBase 的 KIE artifacts 赋值给第二个 KieBase 的情况是可能的。
+这意味着第二个 KieBase，也就是所有的规则，方法和过程可以直接被引用。
+这种引用可以直接在 kmodule.xml 文件中定义。
 
 .Including a KieBase into another declaratively
 ====
@@ -93,6 +107,10 @@ Any Maven produced JAR with a 'kmodule.xml' in it is considered a KieModule.
 This can be loaded from the classpath or dynamically at runtime from a Resource location.
 If the kie-ci dependency is on the classpath it embeds Maven and all resolving is done automatically using Maven and can access local or remote repositories.
 Settings.xml is obeyed for Maven configuration.
+
+任何产生 JAR 的 Maven 并且拥有一个 'kmodule.xml' 都被认为是一个 KieModule。
+这些都可以从 classpath 或者动态的从 Resource 中被加载。
+
 
 The KieContainer provides a runtime to utilize the KieModule, versioning is built in throughout, via Maven.
 Kie-ci will create a classpath dynamically from all the Maven declared dependencies for the artifact being loaded.
@@ -131,6 +149,8 @@ KieContainer kContainer.updateToVersion(
 The `KieScanner` is a Maven-oriented replacement of the KnowledgeAgent present in Drools 5.
 It continuously monitors your Maven repository to check if a new release of a Kie project has been installed and if so, deploys it in the `KieContainer` wrapping that project.
 The use of the `KieScanner` requires kie-ci.jar to be on the classpath.
+
+`KieScanner` 是一个面向 Maven 的 Drools 5 中 KnowledgeAgent 的一个代替品。
 
 A `KieScanner` can be registered on a `KieContainer` as in the following example.
 

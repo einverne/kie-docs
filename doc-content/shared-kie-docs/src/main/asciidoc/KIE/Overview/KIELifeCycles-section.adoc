@@ -7,7 +7,7 @@ The different aspects, or life cycles, of working with KIE system, whether it's 
 
 * *Author*
 +
-** Authoring of knowledge using a UI metaphor, such as: DRL, BPMN2, decision table, class models.
+** Authoring of knowledge using a UI metaphor(比喻), such as: DRL, BPMN2, decision table, class models.
 * *Build*
 +
 ** Builds the authored knowledge into deployable units. 

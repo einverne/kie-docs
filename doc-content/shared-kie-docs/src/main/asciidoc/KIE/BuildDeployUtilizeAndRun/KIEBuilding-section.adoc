@@ -12,7 +12,11 @@ image::KIE/BuildDeployUtilizeAndRun/builder.png[align="center"]
 A Kie Project has the structure of a normal Maven project with the only peculiarity of including a kmodule.xml file defining in a declaratively way the ``KieBase``s and ``KieSession``s that can be created from it.
 This file has to be placed in the resources/META-INF folder of the Maven project while all the other Kie artifacts, such as DRL or a Excel files, must be stored in the resources folder or in any other subfolder under it.
 
+Kie 工程和普通 Maven 工程有着相似的项目结构，唯一的不同就是 Kie 工程多包含了一个 `kmodule.xml` 文件，这个文件显式地定义可以创建的 ``KieBase`` 和 ``KieSession``.
+
 Since meaningful defaults have been provided for all configuration aspects, the simplest kmodule.xml file can contain just an empty kmodule tag like the following:
+
+因为大部分默认值都已经提供了有含义的值，所以最简单的 kmodule.xml 文件可以仅仅包含一个空的 kmodule 标签即可：
 
 .An empty kmodule.xml file
 ====
@@ -27,6 +31,9 @@ Since meaningful defaults have been provided for all configuration aspects, the 
 In this way the kmodule will contain one single default ``KieBase``.
 All Kie assets stored under the resources folder, or any of its subfolders, will be compiled and added to it.
 To trigger the building of these artifacts it is enough to create a `KieContainer` for them.
+
+通过这种方式 kmodule 将包括一个单独的默认的 ``KieBase``。所有存储在资源文件夹下，子文件夹下的 Kie assets 都会被编译并添加进来。
+为了触发 building，可以创建一个 `KieContainer` .
 
 .KieContainer
 image::KIE/BuildDeployUtilizeAndRun/KieContainer.png[align="center"]
@@ -46,11 +53,16 @@ KieContainer kContainer = kieServices.getKieClasspathContainer();
 `
 KieServices` is the interface from where it possible to access all the Kie building and runtime facilities:
 
+`KieServices` 是一个接口，可以用来访问所有的 Kie building 和运行时功能：
+
+
 .KieServices
 image::KIE/BuildDeployUtilizeAndRun/KieServices.png[align="center"]
 
 
 In this way all the Java sources and the Kie resources are compiled and deployed into the KieContainer which makes its contents available for use at runtime.
+
+这样所有 Java 资源和 Kie 资源都被编译并且部署到 KieContainer ，让这些资源在运行时随时都可以被访问到。
 
 [[_thekmodulexmlfile]]
 == The kmodule.xml file
@@ -58,11 +70,18 @@ In this way all the Java sources and the Kie resources are compiled and deployed
 
 As explained in the former section, the kmodule.xml file is the place where it is possible to declaratively configure the ``KieBase``(s) and ``KieSession``(s) that can be created from a KIE project.
 
+上一节解释的那样， kmodule.xml 文件是定义配置的地方
+
 In particular a `KieBase` is a repository of all the application's knowledge definitions.
 It will contain rules, processes, functions, and type models.
 The `KieBase` itself does not contain data; instead, sessions are created from the `KieBase` into which data can be inserted and from which process instances may be started.
 Creating the `KieBase` can be heavy, whereas session creation is very light, so it is recommended that `KieBase` be cached where possible to allow for repeated session creation.
 However end-users usually shouldn't worry about it, because this caching mechanism is already automatically provided by the ``KieContainer``.
+
+特别的，KieBase 是所有应用知识定义的仓库。他包含了所有的规则，过程，方法和类型定义。
+`KieBase` 自身并不包含数据，取而代之的是，sessions 从 `KieBase` 中创建，session 中可以插入数据。
+创建 `KieBase` 是一个很重的操作，而 session 是很轻的操作。所以推荐缓存 `KieBase` 来创建 session。
+但是终端用户并不需要担心这一点，因为缓存机制已经被 ``KieContainer`` 实现了。
 
 .KieBase
 image::KIE/BuildDeployUtilizeAndRun/KieBase.png[align="center"]
@@ -71,11 +90,15 @@ image::KIE/BuildDeployUtilizeAndRun/KieBase.png[align="center"]
 Conversely the `KieSession` stores and executes on the runtime data.
 It is created from the `KieBase` or more easily can be created directly from the `KieContainer` if it has been defined in the kmodule.xml file
 
+`KieSession` 用来保存并执行数据。它是从 `KieBase` 中创建，或者如果定义了 kmodule.xml 文件，直接从 `KieContainer` 中创建更容易。
+
 .KieSession
 image::KIE/BuildDeployUtilizeAndRun/KieSession.png[align="center"]
 
 
 The kmodule.xml allows to define and configure one or more ``KieBase``s and for each `KieBase` all the different ``KieSession``s that can be created from it, as showed by the follwing example:
+
+kmodule.xml 文件允许用来定义和配置一个或者多个 `KieBase` ，对于每一个 ``KieBase`` 所有的 ``KieSession``
 
 .A sample kmodule.xml file
 ====
@@ -242,6 +265,8 @@ It has to be noted that since KSession2_1 and KSession2_2 are of 2 different typ
 If the type of the `KieSession` requested to the `KieContainer` doesn't correspond with the one declared in the kmodule.xml file the `KieContainer` will throw a ``RuntimeException``.
 Also since a `KieBase` and a `KieSession` have been flagged as default is it possible to get them from the `KieContainer` without passing any name.
 
+需要注意的是 KSession2_1 和 KSession2_2 是完全不同的两个类型（第一个是 stateful，而第二个是 stateless），这需要根据其类型在 `KieContainer` 中调用两种不同的方法。
+
 .Retriving default KieBases and KieSessions from the KieContainer
 ====
 [source,java]
@@ -256,6 +281,9 @@ KieSession kieSession1 = kContainer.newKieSession(); // returns KSession2_1
 
 Since a Kie project is also a Maven project the groupId, artifactId and version declared in the pom.xml file are used to generate a `ReleaseId` that uniquely identifies this project inside your application.
 This allows creation of a new KieContainer from the project by simply passing its `ReleaseId` to the ``KieServices``.
+
+因为 Kie 工程也是一个 Maven 项目，定义在 pom.xml 中的 groupId, artifactId 和版本用来产生 `ReleaseId`，这个 ID 用来唯一确定项目的版本。
+这样的方式也使得通过传递 `ReleaseId` 给 ``KieServices`` 来创建新的 KieContainer 。
 
 .Creating a KieContainer of an existing project by ReleaseId
 ====
@@ -272,7 +300,10 @@ KieContainer kieContainer = kieServices.newKieContainer( releaseId );
 
 
 The KIE plugin for Maven ensures that artifact resources are validated and pre-compiled, it is recommended that this is used at all times.
-To use the plugin simply add it to the build section of the Maven pom.xml and activate it by using packaging ``kjar``. 
+To use the plugin simply add it to the build section of the Maven pom.xml and activate it by using packaging ``kjar``.
+
+Maven 的 KIE 插件保证了 artifact 资源是正确的并且提前编译，推荐一直使用。
+使用该插件的方法非常简单，在 Maven pom.xml 的 build 模块中增加如下配置，然后通过配置 ``kjar`` 来激活使用。
 
 .Adding the KIE plugin to a Maven pom.xml and activating it
 ====
@@ -304,7 +335,10 @@ Building a KIE module without the Maven plugin will copy all the resources, as i
 When that JAR is loaded by the runtime, it will attempt to build all the resources then.
 If there are compilation issues it will return a null KieContainer.
 It also pushes the compilation overhead to the runtime.
-In general this is not recommended, and the Maven plugin should always be used. 
+In general this is not recommended, and the Maven plugin should always be used.
+
+当不使用 Maven 插件来构建 KIE module 时系统会拷贝所有的资源到最终的 JAR 中。当 JAR 在运行时被加载时，它会尝试编译所有资源。
+一旦有任何编译时错误，会返回一个 null 的 KieContainer。并且这种方式也将编译推迟到了运行时。这种方式是不推荐的。推荐使用 Maven 插件的方式。
 
 [[_definingakiemoduleprogrammatically]]
 == Defining a KieModule programmatically
@@ -314,6 +348,9 @@ It is also possible to define the ``KieBase``s and ``KieSession``s belonging to 
 The same programmatic API also allows in explicitly adding the file containing the Kie artifacts instead of automatically read them from the resources folder of your project.
 To do that it is necessary to create a ``KieFileSystem``, a sort of virtual file system, and add all the resources contained in your project to it.
 
+不仅可以通过在 kmodule.xml 文件中定义 ``KieBase`` 和 ``KieSession`` ，通过编程方法定义也是支持的。相同的编程 API 也可以显式的增加 Kie artifacts，而不是自动从项目资源文件中读取。
+为了实现这种方式，需要创建 ``KieFileSystem``，一种虚拟文件系统，将项目中所有的资源添加进去。
+
 .KieFileSystem
 image::KIE/BuildDeployUtilizeAndRun/KieFileSystem.png[align="center"]
 
@@ -322,6 +359,11 @@ Like all other Kie core components you can obtain an instance of the `KieFileSys
 The kmodule.xml configuration file must be added to the filesystem.
 This is a mandatory step.
 Kie also provides a convenient fluent API, implemented by the ``KieModuleModel``, to programmatically create this file.
+
+和其他 Kie 核心组件一样，你可以从 ``KieServices`` 中获取 `KieFileSystem` 的实例。
+kmodule.xml 配置文件必须添加到文件系统中。这是强制的。
+Kie 同样提供了一整套 API， ``KieModuleModle`` 来编程创建文件。
+
 
 .KieModuleModel
 image::KIE/BuildDeployUtilizeAndRun/KieModuleModel.png[align="center"]
@@ -379,6 +421,9 @@ image::KIE/BuildDeployUtilizeAndRun/KieResources.png[align="center"]
 Normally the type of a `Resource` can be inferred from the extension of the name used to add it to the ``KieFileSystem``.
 However it also possible to not follow the Kie conventions about file extensions and explicitly assign a specific `ResourceType` to a `Resource` as shown below:
 
+通常情况下 `Resource` 的类型可以通过添加到 ``KieFileSystem`` 的文件扩展名来分别。
+但其他的文件扩展名也可以支持。
+
 .Creating and adding a Resource with an explicit type
 ====
 [source,java]
@@ -428,6 +473,9 @@ The `KieBuilder` reports compilation results of 3 different severities: ERROR, W
 An ERROR indicates that the compilation of the project failed and in the case no `KieModule` is produced and nothing is added to the ``KieRepository``.
 WARNING and INFO results can be ignored, but are available for inspection.
 
+检查编译结果是一个良好的习惯。`KieBuilder` 会通过三种级别的信息来报告编译结果：ERROR, WARNING, 和 INFO。
+ERROR 意味着编译该项目失败，这种情况下没有 `KieModule` 会产生，没有任何内容添加到 ``KieRepository`` 中，WARNING 和 INFO 结果可以被忽略，但是可以额外注意一下。
+
 .Checking that a compilation didn't produce any error
 ====
 [source,java]
@@ -444,6 +492,9 @@ assertEquals( 0, kieBuilder.getResults().getMessages( Message.Level.ERROR ).size
 In some cases, it is possible to change the default severity of a type of build result.
 For instance, when a new rule with the same name of an existing rule is added to a package, the default behavior is to replace the old rule by the new rule and report it as an INFO.
 This is probably ideal for most use cases, but in some deployments the user might want to prevent the rule update and report it as an error.
+
+某些情况下，更改编译结果的日志级别是需要的，比如当新规则拥有一个和已经存在的规则同名的规则市，默认的规则是替换同名的老规则，并且通过 INFO 输出日志。
+这或许对大部分用例来说是复合预期的，但是一些开发环境，用户可能希望避免这样的同名的覆盖，并且希望将这种行为作为 ERROR 输出。
 
 Changing the default severity for a result type, configured like any other option in Drools, can be done by API calls, system properties or configuration files.
 As of this version, Drools supports configurable result severity for rule updates and function updates.
@@ -466,6 +517,10 @@ Many modules of Drools (e.g. drools-core, drools-compiler) have a file named `ki
 provided by the corresponding module. When running Drools in a fat JAR, for example created by the Maven Shade Plugin, those various `kie.conf` files
 need to be merged, otherwise , the fat JAR will contain only 1 kie.conf from a single dependency, resulting into errors.  You can merge resources in
 the Maven Shade Plugin using transformers, like this:
+
+许多 Drools 的模块（比如 drools-core, drools-compiler） 都有一个名为 `kie.conf` 的文件，包含该模块提供服务的类的名字。
+想要在 fat JAR 中运行 Drools ，比如通过 Maven Shade Plugin 创建，不同的 `kie.conf` 文件需要合并，否则，fat JAR 将包含一个 dependency 中的唯一一个 kie.conf，这将导致错误。
+你可以通过 Maven Shade Plugin 插件提供的 transformers 来合并，例如：
 
 [source]
 ----

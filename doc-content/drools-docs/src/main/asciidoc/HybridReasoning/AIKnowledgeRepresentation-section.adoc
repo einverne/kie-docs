@@ -14,11 +14,11 @@ There were large boasts from scientists and engineers looking for funding, which
 Thinking Machines Corporation was one of the leading AI firms in 1990, it had sales of nearly $65 million.
 Here is a quote from its brochure:
 
-"`Some day we will build a thinking machine. It will be a truly
-    intelligent machine. One that can see and hear and speak. A machine that
-    will be proud of us.`"
+"`Some day we will build a thinking machine(总有一天我们能够创造一台能思考的机器). It will be a truly
+    intelligent machine(他将会是真正智能的机器). One that can see and hear and speak(一台能够看，能够听，能够说的机器). A machine that
+    will be proud of us(一台我们引以为豪的机器).`"
 
-Yet 5 years later it filed for bankruptcy protection under Chapter 11.
+Yet 5 years later it filed for bankruptcy protection(申请破产保护) under Chapter 11.
 The site inc.com has a fascinating article titled http://www.inc.com/magazine/19950915/2622.html["The Rise and
     Fall of Thinking Machines"].
 The article covers the growth of the industry and how a cosy relationship with Thinking Machines and http://en.wikipedia.org/wiki/DARPA[DARPA] over-heated the market, to the point of collapse.
@@ -36,7 +36,7 @@ It was the largest and most visible commercial venture for Prolog, and many of t
 Some believe that the failure of the 5GP project tainted Prolog and relegated it to academia, see http://www.dvorak.org/blog/whatever-happened-to-prolog/["Whatever Happened to Prolog"] by John C.
 Dvorak.
 
-However while research funding dried up and the term AI became less used, many green shoots were planted and continued more quietly under discipline specific names: [term]_cognitive systems_
+However while research funding dried up(枯竭) and the term AI became less used, many green shoots were planted and continued more quietly under discipline specific names: [term]_cognitive systems_
 , [term]_machine learning_
 , [term]_intelligent
     systems_
@@ -49,15 +49,15 @@ Offshoots of these then made their way into commercial systems, such as expert s
 
 [term]_Imperative_
 , system based languages, languages such as C, C++, Java and C#/.Net have dominated the last 20 years, enabled by the practicality of the languages and ability to run with good performance on commodity hardware.
-However many believe there is a renaissance underway in the field of AI, spurred by advances in hardware capabilities and AI research.
+However many believe there is a renaissance(复兴) underway in the field of AI, spurred(刺激) by advances in hardware capabilities and AI research.
 In 2005 Heather Havenstein authored http://www.computerworld.com/s/article/99691/Spring_comes_to_AI_winter["Spring comes to AI
         winter"] which outlines a case for this resurgence.
 Norvig and Russel dedicate several pages to what factors allowed the industry to overcome its problems and the research that came about as a result:
 
 [quote, Artificial Intelligence: A Modern Approach]
 ____
-Recent years have seen a revolution in both the content and the methodology of work in artificial intelligence.
-It is now more common to build on existing theories than to propose brand-new ones, to base claims on rigorous theorems or hard experimental evidence rather than on intuition, and to show relevance to real-world applications rather than toy examples.
+Recent years have seen a revolution in both the content and the methodology(方法论) of work in artificial intelligence.
+It is now more common to build on existing theories than to propose brand-new ones, to base claims on rigorous theorems(精确的定理) or hard experimental evidence rather than on intuition(直觉), and to show relevance to real-world applications rather than toy examples.
 ____
 
 [term]_Computer vision_
@@ -65,12 +65,12 @@ ____
 , [term]_machine
         learning_
  and [term]_knowledge representation and reasoning_
- (KRR) have made great strides towards becoming practical in commercial environments.
+ (KRR) have made great strides(大步) towards becoming practical in commercial environments.
 For example, vision-based systems can now fully map out and navigate their environments with strong recognition skills.
 As a result we now have self-driving cars about to enter the commercial market. [term]_Ontological_
  research, based around description logic, has provided very rich semantics to represent our world.
 Algorithms such as the tableaux algorithm have made it possible to use those rich semantics effectively in large complex ontologies.
-Early KRR systems, like Prolog in 5GP, were dogged by the limited semantic capabilities and memory restrictions on the size of those ontologies.
+Early KRR systems, like Prolog in 5GP, were dogged(顽固的) by the limited semantic capabilities and memory restrictions on the size of those ontologies.
 
 == Knowledge Representation and Reasoning
 
@@ -79,27 +79,27 @@ In A Little History talks about AI as a broader subject and touches on Knowledge
 
 KRR is about how we represent our knowledge in symbolic form, i.e.
 how we describe something.
-Reasoning is about how we go about the act of thinking using this knowledge.
+Reasoning(推理，论证) is about how we go about the act of thinking using this knowledge.
 System based object-oriented languages, like C++, Java and C#, have data definitions called classes for describing the composition and behaviour of modeled entities.
-In Java we call exemplars of these described things beans or instances.
+In Java we call exemplars(模型) of these described things beans or instances.
 However those classification systems are limited to ensure computational efficiency.
-Over the years researchers have developed increasingly sophisticated ways to represent our world.
+Over the years researchers have developed increasingly sophisticated(复杂的) ways to represent our world.
 Many of you may already have heard of OWL (Web Ontology Language). There is always a gap between what can be theoretically represented and what can be used computationally in practically timely manner, which is why OWL has different sub-languages from Lite to Full.
 It is not believed that any reasoning system can support OWL Full.
-However, algorithmic advances continue  to narrow that gap and improve the expressiveness available to reasoning engines.
+However, algorithmic advances continue to narrow that gap and improve the expressiveness available to reasoning engines.
 
 There are also many approaches to how these systems go about thinking.
-You may have heard discussions comparing the merits of forward chaining, which is reactive and data driven, with backward chaining, which is passive and query driven.
+You may have heard discussions comparing the merits(优点) of forward chaining, which is reactive and data driven, with backward chaining, which is passive and query driven.
 Many other types of reasoning techniques exist, each of which enlarges the scope of the problems we can tackle declaratively.
 To list just a few: imperfect reasoning (fuzzy logic, certainty factors), defeasible logic, belief systems, temporal reasoning and correlation.
 You don't need to understand all these terms to understand and use Drools.
-They are just there to give an idea of the range of scope of research topics, which is actually far more extensive, and continues to grow as researchers push new boundaries.
+They are just there to give an idea of the range of scope of research topics, which is actually far more extensive(广泛的), and continues to grow as researchers push new boundaries.
 
 KRR is often referred to as the core of Artificial Intelligence.
 Even when using biological approaches like neural networks, which model the brain and are more about pattern recognition than thinking, they still build on KRR theory.
-My first endeavours with Drools were engineering oriented, as I had no formal training or understanding of KRR.
+My first endeavours(努力) with Drools were engineering oriented, as I had no formal training or understanding of KRR.
 Learning KRR has allowed me to get a much wider theoretical background,
-and to better understand both what I've done and where I'm going, as it underpins nearly all of the theoretical side to our Drools R&D.
+and to better understand both what I've done and where I'm going, as it underpins(基础) nearly all of the theoretical side to our Drools R&D.
 It really is a vast and fascinating subject that will pay dividends for those who take the time to learn.
 I know it did and still does for me.
 Bracham and Levesque have written a seminal piece of work, called "Knowledge Representation and Reasoning" that is a must read for anyone wanting to build strong foundations.
@@ -118,7 +118,7 @@ At a high level it has three components:
 * Data
 
 
-As previously mentioned the ontology is the representation model we use for our "things". It could use records or Java classes or full-blown OWL based ontologies.
+As previously mentioned the ontology is the representation model(表示模型) we use for our "things". It could use records or Java classes or full-blown OWL based ontologies.
 The rules perform the reasoning, i.e., they facilitate "thinking". The distinction between rules and ontologies blurs a little with OWL based ontologies, whose richness is rule based.
 
 The term "rules engine" is quite ambiguous in that it can be any system that uses rules, in any form, that can be applied to data to produce outcomes.
@@ -140,8 +140,7 @@ then
 ----
 
 
-The process of matching the new or existing facts against Production Rules is called [term]_pattern
-        matching_
+The process of matching the new or existing facts against Production Rules is called [term]_pattern matching_
 (((Pattern Matching)))
 , which is performed by the [term]_inference engine_
 (((Inference Engine)))
