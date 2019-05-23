@@ -4,6 +4,8 @@
 This script assumes you have Java JDK 1.8+ (set as JAVA_HOME), and Ant 1.9+ installed.
 If you don't, use the following links to download and install them:
 
+假设你已经安装了 JDK 1.8+ （并且设置了 JAVA_HOME)，安装了 Ant 1.9+.
+
 Java: http://java.sun.com/javase/downloads/index.jsp
 
 Ant: http://ant.apache.org/bindownload.cgi

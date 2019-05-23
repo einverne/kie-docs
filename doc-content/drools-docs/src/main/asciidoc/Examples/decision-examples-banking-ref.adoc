@@ -6,7 +6,11 @@
 
 The Banking example decision set demonstrates the process of developing a complete personal banking application to handle credits and debits in multiple accounts. The example uses a set of design patterns that have been created for the banking process.
 
+银行决策的例子演示了如何开发一个完整的个人银行多账户信用和借贷的应用。例子使用了一组设计模式。
+
 The following is an overview of the Banking example:
+
+下面是该例子的大概描述：
 
 * *Name*: `banking`
 * *Main class*: `org.drools.examples.banking.BankingExamplesApp` (in `src/main/java`)
@@ -16,6 +20,8 @@ The following is an overview of the Banking example:
 * *Objective*: Demonstrates pattern matching, basic sorting, and calculation
 
 In this example, the class `RuleRunner` executes one or more DRL files against a set of data. The class compiles the packages and creates the KIE base for each execution, enabling you to easily execute each scenario and inspect the outputs. In a production environment, the KIE base should be built just once and cached, but for the purposes of this example, the `RuleRunner` class is used for efficiency.
+
+该例子中 `RuleRunner` 执行一个或者多个 DRL 文件。该类编译包，并且为每一次执行创建 KIE base，使得你可以轻易地执行每一个场景然后获取结果。在生产环境，KIE base 应该编译一次，然后缓存，但是在演示例子中，为了方便就使用了 `RuleRunner` 类。
 
 .RuleRunner class
 [source,java]
@@ -198,7 +204,11 @@ end
 
 The `when` condition of the rule identifies a `Number` and extracts the value, and then ensures that no number exists that is smaller than the one found by the first pattern. The typical behavior is to match only one number, the smallest in the set. However, the deletion (retraction) of the number after it has been printed means that the smallest number has been removed, revealing the next smallest number, and so on.
 
+规则的 `when` 条件，识别出 `Number` 并且获取数值，然后确保没有数比第一个 pattern 小。典型的行为就是匹配一个数字，最小的那个。但是，打印之后的删除操作，再最小数字删除后重新匹配了规则，然后打印出了下一个小的数字，然后依次继续。
+
 The resulting output shows that the numbers are now sorted numerically:
+
+输出结果会是数值升序。
 
 .BankingExample3.java class output in the IDE console
 [source]

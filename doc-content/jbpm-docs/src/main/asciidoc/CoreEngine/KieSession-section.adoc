@@ -116,10 +116,18 @@ The `ProcessRuntime` interface defines all the session methods for interacting w
 == Event Listeners
 
 The session provides methods for registering and removing listeners.
+
+session 提供了方法来注册或者移除 listeners
+
 A `ProcessEventListener` can be used to listen to process-related events, like starting or completing a process, entering and leaving a node, etc.
+
+ProcessEventListener 可以用来监听流程相关的时间，比如开始或者结束一个流程，进入或者离开一个节点，等等。
+
 Below, the different methods of the `ProcessEventListener` class are shown.
 An event object provides access to related information, like the process instance and node instance linked to the event.
 You can use this API to register your own event listeners.
+
+下面是 ProcessEventListener 的不同方法。
 
 [source,java]
 ----
@@ -140,16 +148,34 @@ public interface ProcessEventListener {
 ----
 
 A note about before and after events: these events typically act like a stack, which means that any events that occur as a direct result of the previous event, will occur between the before and the after of that event.
-For example, if a subsequent node is triggered as result of leaving a node, the node triggered events will occur inbetween the beforeNodeLeftEvent and the afterNodeLeftEvent of the node that is left (as the triggering of the second node is a direct result of leaving the first node).  Doing that allows us to derive cause relationships between events more easily.
+
+关于 before 和 after 事件的注意事项：这些事件表现为 stack （栈），这也就意味着 listener 的事件会前后发生，而真正的事件会在 listener 回调中间发生。
+
+For example, if a subsequent node is triggered as result of leaving a node, the node triggered events will occur in between the beforeNodeLeftEvent and the afterNodeLeftEvent of the node that is left (as the triggering of the second node is a direct result of leaving the first node).  Doing that allows us to derive cause relationships between events more easily.
+
+比如，如果因为离开节点而触发后续节点，node 触发事件会发生在 beforeNodeLeftEvent 和 afterNodeLeftEvent 之间。这样做就让我们能够追溯这两个事件发生的关系。
+
 Similarly, all node triggered and node left events that are the direct result of starting a process will occur between the beforeProcessStarted and afterProcessStarted events.
+
+同样的，所有节点触发和节点离开事件会在 beforeProcessStarted 和 afterProcessStarted 之间发生。
+
 In general, if you just want to be notified when a particular event occurs, you should be looking at the before events only (as they occur immediately before the event actually occurs). When only looking at the after events, one might get the impression that the events are fired in the wrong order, but because the after events are triggered as a  stack (after events will only fire when all events that were triggered as a result of this event have already fired).  After events should only be used if you want to make sure that all processing related to this has ended (for example, when you want to be notified when starting of a particular process instance has ended.
+
+通常来说，如果你仅仅想要在特定事件发生时被通知，你应该只关心 before 事件（通常他们会在事件真正发生之前被调用）。当只关心 after 事件时，可能会造成事件触发的顺序是错误的印象，但是因为 after 事件是作为 stack 来触发（after 事件只会在对应的 before 事件被触发后被触发）。after 事件只有当你想要确保所有相关过程结束时才推荐使用（比如，当你想要在特定过程结束时被通知）
 
 Also note that not all nodes always generate node triggered and/or node left events.
 Depending on the type of node, some nodes might only generate node left events, others might only generate node triggered events.
+
+并且，注意并不是所有节点会产生 node triggered 或者 node left 事件，根据不同 node 的类型，一些 nodes 可能只会产生 node left 事件，而另一些可能只会产生 node triggered 事件。
+
 Catching intermediate events for example are not generating triggered events (they are only generating left events, as they are not really triggered by another node, rather activated from outside).  Similarly, throwing intermediate events are not generating left events (they are only generating  triggered events, as they are not really left, as they have no outgoing connection).
 
 jBPM out-of-the-box provides a listener that can be used to create an audit log (either to the console or the a file on the file system).  This audit log contains all the different events that occurred at runtime so it's easy to figure out what happened.
+
+jBPM 开箱即用提供了一个 listener ，可以被用来创建审计 log (既可以打印到 console，也可以是文件系统上的文件）。这个审计日志包括了所有在运行时发生的事件，可以轻松地看到发生了什么。
+
 Note that these loggers should only be used for debugging purposes.
+
 The following logger implementations are supported by default:
 
 . Console logger: This logger writes out all the events to the console.
@@ -162,6 +188,8 @@ The `KieServices` lets you add a `KieRuntimeLogger` to your session, as shown be
 When creating a console logger, the KIE session for which the logger needs to be created must be passed as an argument.
 The file logger also requires the name of the log file to be created, and the threaded file logger requires the interval (in milliseconds) after which the events should be saved.
 You should always close the logger at the end of your application.
+
+你应该永远在程序结束时关闭 logger
 
 [source,java,subs="attributes+"]
 ----

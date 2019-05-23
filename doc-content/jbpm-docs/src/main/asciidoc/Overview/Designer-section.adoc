@@ -6,5 +6,8 @@ It is targeted towards business users and offers a graphical editor for viewing 
 It supports round-tripping between the Eclipse editor and the web-based designer.
 It also supports simulation of processes.
 
+基于网页的 jBPM 设计器允许在网页环境中对商业过程进行建模。和 Eclipse 插件相同，针对特定商业用户，它允许在可视化界面中查看，编辑商业过程（通过拖拽）。
+它同样支持过程的模拟执行。
+
 .Web-based designer for creating BPMN2 processes
 image::Overview/Designer.png[]

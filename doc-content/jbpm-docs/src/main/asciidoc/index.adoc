@@ -25,6 +25,8 @@ endif::[]
 
 Introduction and getting started with {PRODUCT}
 
+介绍并开始使用 {PRODUCT}
+
 include::Overview-chapter.adoc[leveloffset=+1]
 include::GettingStarted-chapter.adoc[leveloffset=+1]
 include::BusinessApplications-chapter.adoc[leveloffset=+1]

@@ -16,6 +16,9 @@ Whenever a process is started, a new process instance is created (for that proce
 image::CoreEngine/KnowledgeBaseAndSession.png[]
 
 For example, imagine you are writing an application to process sales orders.
+
+比如，想象你正在为处理销售订单而设计一个应用。
+
 You could then define one or more process definitions that define how the order should be processed.
 When starting up your application, you first need to create a KIE base that contains those process definitions.
 You can then create a session based on this KIE base so that, whenever a new sales order comes in, a new process instance is started for that sales order.
