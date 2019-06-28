@@ -7,4 +7,4 @@ DRL (Drools Rule Language) 规则是直接定义在 `.drl` 文本文件中的商
 
 All data objects related to a DRL rule must be in the same project package as the DRL rule in {CENTRAL}. Assets in the same package are imported by default. Existing assets in other packages can be imported with the DRL rule.
 
-
+所有和 DRL 规则关联的数据对象都必须在 DRL 规则同一个项目包下。同一个包下的资源默认自动导入。其他包中已经存在的资源可以在 DRL 规则中被导入。

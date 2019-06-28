@@ -3,9 +3,18 @@
 = Overview
 
 Imagine you are developing a BPM solution which mixes process with business data.
+
+假设你正在开发一个 BPM 解决方案，混合了过程和商业数据。
+
 Imagine also you need some forms to be used within processes in order to let the users enter data.
+
+假设你需要一些表单用来在过程中让用户输入数据。
+
 Moreover, you'll likely want to have some kind of dashboards to display metrics and key performance indicators in order to quickly assess how your processes are doing.
 So far so good.
+
+而且，你可能需要一些 dashboard 来显示指标和关键性能，来快速掌握过程执行状态。
+到目前为止，一切都还好。
 
 jBPM brings you all the ingredients you need to develop end-to-end business process solutions.
 The jBPM's BAM module (also known as Dashbuilder) allows for composing custom business dashboards by mixing data coming from heterogeneous sources of information.
@@ -19,3 +28,6 @@ In the figure, within the highlighted sections, there exists two options:
 
 * *Business Dashboards:* This option is intended to give users access to a generic dashboard tooling for the composition of brand new dashboards.
 * *Process & Task Reports:* It opens up the Process related reports pages which contains several performance indicators related to the {PROCESS_ENGINE}.
+
+* *Business Dashboards:* 这个选项用来给用户一组通用的仪表盘工具，用来构成新的仪表盘。
+* *Process & Task Reports:* 他会打开过程关联的报表页面，包含多个关联到 {PROCESS_ENGINE} 的性能指标。

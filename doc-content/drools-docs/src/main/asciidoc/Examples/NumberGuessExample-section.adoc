@@ -17,6 +17,8 @@ Objective: Demonstrate use of Rule Flow to organise Rules
 The "Number Guess" example shows the use of Rule Flow, a way of controlling the order in which rules are fired.
 It uses widely understood workflow diagrams for defining the order in which groups of rules will be executed.
 
+"Number Guess" 例子展示了控制规则执行顺序的方法。它使用广泛熟悉的工作流图解来决定一组规则中哪一条规则被执行。
+
 .Creating the Number Guess RuleBase: NumberGuessExample.main() - part 1
 ====
 [source,java]
@@ -64,9 +66,15 @@ ksession.dispose();
 
 
 Once we have a KIE base, we can use it to obtain a Stateful Session.
+
+一旦有 KIE base，我们可以用它来获取 Stateful Session。
+
 Into our session we insert our facts, i.e., standard Java objects.
 (For simplicity, in this sample, these classes are all contained within our [path]_NumberGuessExample.java_
  file.
+
+在 session 中我们可以插入 Facts，比如 标准 Java Objects。
+
 Class `GameRules` provides the maximum range and the number of guesses allowed.
 Class `RandomNumber` automatically generates a number between 0 and 100 and makes it available to our rules, by insertion via the `getValue()` method.
 Class `Game` keeps track of the guesses we have made before, and their number.

@@ -3,6 +3,8 @@
 
 The Fibonacci example decision set demonstrates how the {DECISION_ENGINE} uses recursion to resolve execution conflicts for rules in a sequence. The example focuses on resolving conflicts through salience values that you can define in rules.
 
+Fibonacci 的决策例子演示 {DECISION_ENGINE} 如何递归解决问题。例子重点在使用在规则中定义的 salience 值来解决冲突。
+
 The following is an overview of the Fibonacci example:
 
 * *Name*: `fibonacci`
@@ -20,6 +22,8 @@ The Fibonacci example uses the single fact class `Fibonacci` with the following 
 * `value`
 
 The `sequence` field indicates the position of the object in the Fibonacci number sequence. The `value` field shows the value of that Fibonacci object for that sequence position, where `-1` indicates a value that still needs to be computed.
+
+`sequence` 字段表示在斐波那契数列中的位置。 `value` 字段表示该位置的数值。`-1` 表示该位置的值需要被计算。
 
 .Fibonacci class
 [source,java]
@@ -101,6 +105,8 @@ end
 ----
 
 To better understand the execution flow of this example, you can load the audit log file from `target/fibonacci.log` into your IDE debug view or *Audit View*, if available (for example, in *Window* -> *Show View* in some IDEs).
+
+为了更好的理解这个例子中工作流的执行过程，你可以将 `target/fibonacci.log` 目录中的日志加载到 IDE debug view 或者 *Audit View* 中。
 
 In this example, the *Audit View* shows the original assertion of the `Fibonacci` object with a `sequence` field of `50`, done from Java code. From there on, the *Audit View* shows the continual recursion of the rule, where each asserted `Fibonacci` object causes the `"Recurse"` rule to become activated and to fire again.
 

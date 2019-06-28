@@ -62,7 +62,11 @@ public class RuleRunner {
 
 To execute the example, run the `org.drools.examples.banking.BankingExamplesApp` class as a Java application in your IDE.
 
+执行该例子，可以在 IDE 中运行 `org.drools.examples.banking.BankingExamplesApp` 类。
+
 After the execution, a basic user interface window appears that you can use to run each example within the example set:
+
+执行之后，一个基础的用户界面会显示出来，你可以在其中运行每一个例子：
 
 .Banking example GUI
 image::Examples/BankingExample/Banking-GUI.png[]

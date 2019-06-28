@@ -2,6 +2,8 @@
 = BPMN2 artifacts in process designer 
 
 Artifacts are used to provide additional information about a process. An artifact is any object depicted in the BPMN2 diagram that is not part of the process workflow. Artifacts have no incoming or outgoing flow objects.The purpose of artifacts is to provide additional information required to understand the diagram. The artifacts table lists the artifacts supported in the legacy process designer.
+
+Artifacts 用来提供关于过程的额外信息。一个 artifact 是不包含在流程中的用来描述 BPMN2 图的对象。Artifacts 没有输入和输出。artifacts 的目的是提供理解图表的信息。artifacts table 在历史的流程设计器中展示了支持的 artifacts。
 [NOTE]
 ====
 Artifacts are not supported in the new process designer.

@@ -4,17 +4,30 @@
 [NOTE]
 ====
 "The primary goal of BPMN is to provide a notation that is readily understandable by all business users, from the business analysts that create the initial drafts of the processes, to the technical developers responsible for implementing the technology that will perform those processes, and finally, to the business people who will manage and monitor those processes."
+BPMN的主要目标是提供一个易于所有业务用户理解的符号，从创建流程初始草案的业务分析师，到负责实现执行这些流程的技术开发人员，最后，到那些将管理和监控这些流程的业务人员。
 ====
 
 The Business Process Model and Notation (BPMN) 2.0 specification is an OMG specification that not only defines a standard on how to graphically represent a business process (like BPMN 1.x), but now also includes execution semantics for the elements defined, and an XML format on how to store (and share) process definitions.
+
+业务流程模型和表示法（BPMN）2.0规范是一个OMG规范，它不仅定义了如何以图形方式表示业务流程的标准（如BPMN 1.x），而且现在还包括已定义元素的执行语义，以及关于如何存储（和共享）流程定义的XML格式。
 
 jBPM6 allows you to execute processes defined using the BPMN 2.0 XML format.
 That means that you can use all the different jBPM6 tooling to model, execute, manage and monitor your business processes using the BPMN 2.0 format for specifying your executable business processes.
 Actually, the full BPMN 2.0 specification also includes details on how to represent things like choreographies and collaboration.
 The jBPM project however focuses on that part of the specification that can be used to specify executable processes.
 
+jBPM6允许您执行使用BPMN 2.0 XML格式定义的过程。
+这意味着您可以使用所有不同的jBPM6工具来使用BPMN 2.0格式建模，执行，管理和监控业务流程，以指定可执行的业务流程。
+实际上，完整的BPMN 2.0规范还包括有关如何表示编排和协作等内容的详细信息。
+然而，jBPM项目侧重于可用于指定可执行进程的规范部分。
+
 Executable processes in BPMN consist of a different types of nodes being connected to each other using sequence flows.
+
+BPMN中的可执行进程由使用序列流相互连接的不同类型的节点组成。
+
 The BPMN 2.0 specification defines three main types of nodes:
+
+BPMN 2.0 规范定义了三种主要类型的节点：
 
 * __Events__: They are used to model the occurrence of a particular event.
   This could be a start event (that is used to indicate the start of the process), end events (that define the end of the process, or of that subflow) and intermediate events (that indicate events that might occur during the execution of the process).
@@ -24,7 +37,14 @@ The BPMN 2.0 specification defines three main types of nodes:
 * __Gateways__: Can be used to define multiple paths in the process.
   Depending on the type of gateway, these might indicate parallel execution, choice, etc.
 
+* __Events__: 它们用于模拟特定事件的发生。这可以是一个启动事件（用于表示进程的开始），结束事件（定义进程结束或子流程结束）和中间事件（指示执行期间可能发生的事件）。
+* __Activities__: 这些定义了在执行过程中需要执行的不同操作。根据您尝试建模的活动类型，存在不同类型的任务 (比如，人工任务，服务等等）activities 同样可以被嵌套（使用不同类别的子流程）
+* __Gateways__: 可用于在流程中定义多个路径。根据网关的类型，这些可能表示并行执行，选择等。
+
 jBPM6 does not implement all elements and attributes as defined in the BPMN 2.0 specification.
+
+jBPM6 并没有实现 BPMN 2.0 规范中定义的所有元素和属性。
+
 We do however support a significant subset, including the most common node types that can be used inside executable processes.
 This includes (almost) all elements and attributes as defined in the "Common Executable" subclass of the BPMN 2.0 specification, extended with some additional elements and attributes we believe are valuable in that context as well.
 The full set of elements and attributes that are supported can be found below, but it includes elements like:
@@ -192,3 +212,5 @@ ksession.startProcess("com.sample.HelloWorld");
 ----
 
 For more detail, check out the chapter on the API and the basics.
+
+更多细节，可以查看关于 API 的章节。

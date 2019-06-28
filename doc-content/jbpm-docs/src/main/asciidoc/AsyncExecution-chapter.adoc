@@ -1,45 +1,112 @@
 [[_jbpmasyncexecution]]
 = Concurrency and asynchronous execution
 
+并发或者同步执行
+
 == Concurrency
 
+并发执行
 
 In the following text, we will refer to two types of "multi-threading": logical and technical.
+
+在下面的描述中，我们会使用两种类型的“多线程”： logical 和 technical.
+
 Technical multi-threading is what happens when multiple threads or processes are started on a computer, for example by a Java or C program.
+
+Technical multi-threading 是描述计算机中执行多线程或者进程时使用，比如 Java 或者 c 语言。
+
 Logical multi-threading is what we see in a BPM process after the process reaches a parallel gateway, for example.
+
+Logical 多线程是在 BPM 进程中看到多个线程同时到达 parallel gateway 的现象。
+
 From a functional standpoint, the original process will then split into two processes that are executed in a parallel fashion.
 
+从功能性立场来看，原始的进程会在同一个平行的 fashion 中分裂成两个进程被执行。
+
 Of course, the {PROCESS_ENGINE} supports logical multi-threading: for example, processes that include a parallel gateway.
+
+当然， {PROCESS_ENGINE} 支持 logical multi-threading: 比如，流程中包含 parallel gateway。
+
 We've chosen to implement logical multi-threading using one thread: a jBPM process that includes logical multi-threading will only be executed in one technical thread.
+
+我们选择使用一个线程来实现 logical multi-threading. 一个包含 logical multi-threading 的 jBPM 流程只会在一个线程中被执行。
+
 The main reason for doing this is that multiple (technical) threads need to be be able to communicate state information with each other if they are working on the same process.
+
+我们采用这种实现方式的主要原因是，多线程（technical）如果在同一个进程中被执行，那么需要进行线程间状态同步。
+
 This requirement brings with it a number of complications.
+
+这就意味着需要更多的复杂逻辑。
+
 While it might seem that multi-threading would bring performance benefits with it, the extra logic needed to make sure the different threads work together well means that this is not guaranteed.
+
+当然 multi-threading 可能带来更多性能上的优化，但是需要额外的逻辑实现来确保不同线程的协作。
+
 There is also the extra overhead incurred because we need to avoid race conditions and deadlocks.
+
+这也会造成额外的费用，因为我们需要避免竞态和死锁。
 
 === Engine execution
 
 
 In general, the {PROCESS_ENGINE} executes actions in serial.
+
+通常来说, {PROCESS_ENGINE} 会连续串行执行。
+
 For example, when the {PROCESS_ENGINE} encounters a script task in a process, it will synchronously execute that script and wait for it to complete before continuing execution.
+
+比如说，当 {PROCESS_ENGINE} 在流程中遇到 script task, 它会同步地执行该 script，等待其结束然后再继续。
+
 Similarly, if a process encounters a parallel gateway, it will sequentially trigger each of the outgoing branches, one after the other.
+
+类似的，如果一个流程遇到 parallel gateway，它会依次触发每一条出口分支，一个接着一个。
+
 This is possible since execution is almost always instantaneous, meaning that it is extremely fast and produces almost no overhead.
+
+因为执行几乎是瞬时的，执行非常快几乎不会产生任何额外费用，所以这是可能的。
+
 As a result, the user will usually not even notice this.
+
+这样，用户设置不会感知到。
+
 Similarly, action scripts in a process are also synchronously executed, and the {PROCESS_ENGINE} will wait for them to finish before continuing the process.
+
+类似的，流程中的 action scripts 同样是同步执行的，{PROCESS_ENGINE} 会等待其结束再执行下面的流程。
+
 For example, doing a Thread.sleep(...) as part of a script will not make the {PROCESS_ENGINE} continue execution elsewhere but will block the {PROCESS_ENGINE} thread during that period.
+
+比如，在 script 中执行 `Thread.sleep(...)` 将不会使得 {PROCESS_ENGINE} 继续其他地方的任务，而会阻塞 {PROCESS_ENGINE} 该线程。
 
 The same principle applies to service tasks.
 When a service task is reached in a process, the {PROCESS_ENGINE} will also invoke the handler of this service synchronously.
+
+同样的原则适用于其他 service tasks。当 service task 进入流程，{PROCESS_ENGINE}  会调用该 service 的实现 handler 同步的。
+
 The {PROCESS_ENGINE} will wait for the completeWorkItem(...) method to return before continuing execution.
 It is important that your service handler executes your service asynchronously if its execution is not instantaneous.
+
+{PROCESS_ENGINE}  将会等待 completeWorkItem(...) 方法执行完，然后继续。这就意味着 service handler 中如果执行非瞬时，则需要特别注意服务的异步处理。
 
 An example of this would be a service task that invokes an external service.
 Since the delay in invoking this service remotely and waiting for the results might be too long, it might be a good idea to invoke this service asynchronously.
 This means that the handler will only invoke the service and will notify the {PROCESS_ENGINE} later when the results are available.
 In the mean time, the {PROCESS_ENGINE} then continues execution of the process.
 
+一个比较常见的例子就是当 Service task 需要调用外部服务。因为调用外部服务的延迟和等待结果的过程比较长，这可能需要更好地处理服务的异步操作。
+这意味着 handler 将只会调用该 Service 之后当结果可用时通知  {PROCESS_ENGINE} 。与此同时， {PROCESS_ENGINE} 会继续执行。
+
 Human tasks are a typical example of a service that needs to be invoked asynchronously, as we don't want the {PROCESS_ENGINE} to wait until a human actor has responded to the request.
+
+Human tasks 是典型的异步调用例子，因为我们不希望 {PROCESS_ENGINE} 在收到人工操作前一直等待。
+
 The human task handler will only create a new task (on the task list of the assigned actor) when the human task node is triggered.
+
+当 human task 节点被触发，human task handler 只会创建一个新的 task
+
 The {PROCESS_ENGINE} will then be able to continue execution on the rest of the process (if necessary) and the handler will notify the {PROCESS_ENGINE} asynchronously when the user has completed the task.
+
+{PROCESS_ENGINE} 能够继续流程的执行，然后 handler 会在用户完成后异步通知 {PROCESS_ENGINE} .
 
 === Multiple KIE sessions and persistence
 
@@ -48,20 +115,34 @@ The simplest way to run multiple processes is to run them all using one KIE sess
 However, there are cases in which it's necessary to run multiple processes in different KIE sessions, even in different (technical) threads.
 Both are supported by jBPM.
 
+最简单的跑多个流程的方法就是将他们都使用同一个 KIE session。但是，有种情况是需要运行多个流程在不同的 KIE Sessions 中，甚至在不同的 多线程 中。这两种方法都可以支持。
+
 When we add persistence (using a database, for example) to a situation in which we have multiple KIE sessions (and processes), there is a guideline that users should be aware of.
 The following paragraphs explain why this guideline is important to follow.
+
+当我们使用持久化（数据库，比如）的场景，比如我们会拥有多个 KIE Sessions（和 流程）。
 
 [TIP]
 ====
 Please make sure to use a database that allows row-level locks as well as table-level locks.
+
+确保使用支持行级别锁和表级别锁的数据库。
 ====
 
 
 For example, a user could have a situation in which there are 2 (or more) threads running, each with its own KIE session instance.
 On each thread, jBPM processes are being started using the local KIE session instance.
 
+比如，可能遇到这样一种场景，有两个或者多个线程同时，每一个线程都有自己的 KIE session 实例。在每一个线程中， jBPM 流程可以使用本地的 KIE session 实例来启动。
+
 In this use case, a race condition exists in which both thread A and thread B will have coincidentally simultaneously finished a process.
+
+在这种场景下，thread A 和 B 可能偶然地同时结束。
+
 At this point, because persistence is being used, both thread A and B will be committing changes to the database.
+
+这种请款下，持久化被使用，那么 thread A 和 B 都将信息提交到数据库。
+
 If row-level locks are not possible, then the following situation can occur:
 
 * Thread A has a lock on the ProcessInstanceInfo table, having just committed a change to that table.
@@ -69,9 +150,18 @@ If row-level locks are not possible, then the following situation can occur:
 * Thread B has the opposite situation: it has a lock on the SessionInfo table, having just committed a change there.
 * Thread B wants a lock on the ProcessInstanceInfo table, even though Thread A already has a lock on it.
 
+如果行锁可以被使用，那么下面的场景可能发生：
+
+* Thread A 持有 ProcessInstanceInfo 表的锁，刚好将变化提交到表
+* Thread A 想要持有 SessionInfo 表的锁，为了提交变化
+* Thread B 正好做相反的操作：它持有 SessionInfo 表的锁，刚刚提交了变化
+* Thread B 想要持有 ProcessInstanceInfo 表的锁，即使 Thread A 已经持有该锁
+
 
 This is a deadlock situation which the database and application will not be able to solve.
 However, if row-level locks are possible (and enabled!!) in the database (and tables used), then this situation will not occur.
+
+这就是一个死锁的情况，数据库和应用程序都将无法解决。但是，行级别锁可用的话，这种情况就不会发生。
 
 == Asynchronous execution
 
@@ -102,7 +192,12 @@ public class MyServiceTaskHandler implements WorkItemHandler {
 
 It's advisable to have your handler contact a service that executes the business operation, instead of having it perform the actual work.
 If anything goes wrong with a business operation, it doesn't affect your process.
+
+如果业务操作出现任何问题，则不会影响您的流程。
+
 The loose coupling that this provides also gives you greater flexibility in reusing services and developing them.
+
+这种松散的耦合，在重用服务时给你提供了更大灵活性。
 
 For example, you can have your human task handler simply invoke the human task service to add a task there.
 To implement an asynchronous handler, you usually have to simply do an asynchronous invocation of this service.
@@ -112,6 +207,9 @@ This usually depends on the technology you use to do the communication, but this
 
 
 In version 6, jBPM introduces new component called jbpm executor which provides quite advanced features for asynchronous execution.
+
+在版本6中， jBPM 提供了新的组件，叫做 jbpm executor, 这个组件提供了相当高级的异步执行特性。
+
 It delivers generic environment for background execution of commands.
 Commands are nothing more than business logic encapsulated within simple interface.
 It does not have any process runtime related information, that means no need to complete work items, or anything of that sort.

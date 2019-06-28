@@ -5,10 +5,24 @@
 image::BPMN2/Process.png[]
 
 A business process is a graph that describes the order in which a series of steps need to be executed, using a flow chart.
+
+业务流程是使用流程图描述需要执行一系列步骤的顺序的图表。
+
 A process consists of a collection of nodes that are linked to each other using connections.
+
+一个流程包含一组节点，这些节点通过连接组合到一起。
+
 Each of the nodes represents one step in the overall process while the connections specify how to transition from one node to the other.
+
+每一个节点表示总流程中的一步，连接则表示如何从一个节点到另一个节点。
+
 A large selection of predefined node types have been defined.
+
+已定义了大量预定义节点类型。
+
 This chapter describes how to define such processes and use them in your application.
+
+本章介绍如何定义此类过程并在应用程序中使用它们。
 
 == Creating a process
 
@@ -106,9 +120,20 @@ For example, the following XML fragment shows a simple process that contains a s
 ----
 
 The process XML file consists of two parts, the top part (the "process" element) contains the definition of the different nodes and their properties, the lower part (the "BPMNDiagram" element) contains all graphical information, like the location of the nodes.
+
+流程 XML 文件包含两个部分，上部分（流程元素）包含流程中不同的节点定义以及他们的属性，下部分（BPMNDiagram 元素）包含所有绘图信息，包含节点的位置。
+
 The process XML consist of exactly one <process> element.
+
+流程XML 有且只有一个 `<process>` 元素。
+
 This element contains parameters related to the process (its type, name, id and package name),  and consists of three subsections: a header section (where process-level information like variables, globals, imports and lanes can be defined), a nodes section that defines each of the nodes in the process, and a connections section that contains the connections between all the nodes in the process.
+
+此元素包含与流程相关的参数（其类型，名称，ID和包名称），并由三个子部分组成：标题部分（可以定义流程级信息，如变量，全局变量，导入和通道），节点定义流程中每个节点的部分，以及包含流程中所有节点之间连接的连接部分。
+
 In the nodes section, there is a specific element for each node, defining the various parameters and, possibly, sub-elements for that node type.
+
+在节点部分中，每个节点都有一个特定元素，用于定义各种参数，并可能定义该节点类型的子元素。
 
 .jBPM BPMN2 constructs
 [cols="1,1"]
@@ -128,6 +153,9 @@ image::BPMN2/ActivitiesGateways.png[]
 === Details: Process properties
 
 A BPMN2 process is a flow chart where different types of nodes are linked using connections.
+
+BPMN2 流程是一个流程图，不同的节点通过 connections 连接。
+
 The process itself exposes the following properties:
 
 * __Id__: The unique id of the process.
